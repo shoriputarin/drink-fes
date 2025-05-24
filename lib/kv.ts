@@ -1,4 +1,9 @@
-import { kv } from '@vercel/kv';
+// lib/kv.ts
+import { createClient } from '@vercel/kv';
 
-// 必要に応じてラッパー関数を追加
-export default kv; 
+const kv = createClient({
+  url: process.env.KV_URL!,
+  token: process.env.KV_REST_API_TOKEN!,
+});
+
+export default kv;
