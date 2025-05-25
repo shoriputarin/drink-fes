@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from 'react';
+import Link from 'next/link';
 
 interface Sale {
   productId: number;
@@ -93,7 +94,22 @@ export default function AdminPage() {
 
   return (
     <main style={{ maxWidth: 800, margin: '2rem auto', padding: 16 }}>
-      <h1>売上集計画面</h1>
+      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1.5rem' }}>
+        <h1>売上集計画面</h1>
+        <Link 
+          href="/" 
+          style={{
+            padding: '0.5rem 1rem',
+            backgroundColor: '#4CAF50',
+            color: 'white',
+            textDecoration: 'none',
+            borderRadius: '4px',
+            fontSize: '0.9rem'
+          }}
+        >
+          メインページに戻る
+        </Link>
+      </div>
       <div style={{ marginBottom: '1rem' }}>
         <button
           onClick={handleClearData}
