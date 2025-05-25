@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react';
 import { products } from '@lib/products';
 import Image from "next/image";
 import styles from "./page.module.css";
+import Link from 'next/link';
 
 interface Order {
   productId: number;
@@ -97,7 +98,22 @@ export default function OrderPage() {
       }}>
         {/* 左側：注文フォーム */}
         <div style={{ flex: 1 }}>
-          <h1 style={{ marginBottom: '1.5rem' }}>ドリンク注文フォーム</h1>
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1.5rem' }}>
+            <h1>ドリンク注文フォーム</h1>
+            <Link 
+              href="/admin" 
+              style={{
+                padding: '0.5rem 1rem',
+                backgroundColor: '#4CAF50',
+                color: 'white',
+                textDecoration: 'none',
+                borderRadius: '4px',
+                fontSize: '0.9rem'
+              }}
+            >
+              管理画面へ
+            </Link>
+          </div>
           <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
             <label style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
               商品：
