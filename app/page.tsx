@@ -77,15 +77,35 @@ export default function OrderPage() {
   });
 
   return (
-    <div className={styles.page}>
-      <div style={{ display: 'flex', gap: '2rem', width: '100%', maxWidth: 1200, margin: '0 auto' }}>
+    <div className={styles.page} style={{ 
+      minHeight: '100vh',
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      padding: '2rem'
+    }}>
+      <div style={{ 
+        display: 'flex', 
+        gap: '2rem', 
+        width: '100%', 
+        maxWidth: 1200, 
+        margin: '0 auto',
+        backgroundColor: 'var(--background)',
+        padding: '2rem',
+        borderRadius: '8px',
+        boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)'
+      }}>
         {/* 左側：注文フォーム */}
         <div style={{ flex: 1 }}>
-          <h1>ドリンク注文フォーム</h1>
-          <form onSubmit={handleSubmit}>
-            <label>
+          <h1 style={{ marginBottom: '1.5rem' }}>ドリンク注文フォーム</h1>
+          <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+            <label style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
               商品：
-              <select value={productId} onChange={e => setProductId(Number(e.target.value))}>
+              <select 
+                value={productId} 
+                onChange={e => setProductId(Number(e.target.value))}
+                style={{ padding: '0.5rem', borderRadius: '4px' }}
+              >
                 {products.map(p => (
                   <option key={p.id} value={p.id}>
                     {p.name}（{p.price}円）
@@ -93,31 +113,42 @@ export default function OrderPage() {
                 ))}
               </select>
             </label>
-            <br />
-            <label>
+            <label style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
               数量：
               <input
                 type="number"
                 min={1}
                 value={count}
                 onChange={e => setCount(Number(e.target.value))}
-                style={{ width: 60 }}
+                style={{ width: '100px', padding: '0.5rem', borderRadius: '4px' }}
               />
             </label>
-            <br />
-            <button type="submit" disabled={loading} style={{ marginTop: 12 }}>
+            <button 
+              type="submit" 
+              disabled={loading} 
+              style={{ 
+                marginTop: '1rem',
+                padding: '0.75rem 1.5rem',
+                backgroundColor: 'var(--foreground)',
+                color: 'var(--background)',
+                border: 'none',
+                borderRadius: '4px',
+                cursor: 'pointer',
+                fontSize: '1rem'
+              }}
+            >
               {loading ? '送信中...' : '注文する'}
             </button>
           </form>
-          {message && <p style={{ color: 'green', marginTop: 16 }}>{message}</p>}
+          {message && <p style={{ color: 'green', marginTop: '1rem' }}>{message}</p>}
         </div>
 
         {/* 右側：売上情報 */}
         <div style={{ flex: 1 }}>
-          <h1>売上情報</h1>
+          <h1 style={{ marginBottom: '1.5rem' }}>売上情報</h1>
           <div style={{ marginBottom: '2rem' }}>
-            <h2>商品別売上</h2>
-            <table border={1} cellPadding={8} style={{ width: '100%', marginBottom: 16 }}>
+            <h2 style={{ marginBottom: '1rem' }}>商品別売上</h2>
+            <table border={1} cellPadding={8} style={{ width: '100%', marginBottom: '1rem', borderCollapse: 'collapse' }}>
               <thead>
                 <tr>
                   <th>商品名</th>
@@ -141,8 +172,8 @@ export default function OrderPage() {
           </div>
 
           <div>
-            <h2>直近5件の注文履歴</h2>
-            <table border={1} cellPadding={8} style={{ width: '100%', marginBottom: 16 }}>
+            <h2 style={{ marginBottom: '1rem' }}>直近5件の注文履歴</h2>
+            <table border={1} cellPadding={8} style={{ width: '100%', marginBottom: '1rem', borderCollapse: 'collapse' }}>
               <thead>
                 <tr>
                   <th>注文日時</th>
